@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS publisher;
+DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS subjects;
+DROP TABLE IF EXISTS books_subjects;
+CREATE TABLE publisher(
+	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+	name TEXT UNIQUE NOT NULL,
+	country TEXT NOT NULL       	
+);
+
+CREATE TABLE books(
+	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+	title TEXT,
+	publisher INTEGER,
+        FOREIGN KEY (publisher) REFERENCES publisher(id)
+);
+
+CREATE TABLE subjects(
+	id INTEGER PRIMARY KEY ASC AUTOINCREMENT,
+	name TEXT NOT NULL
+);
+
+CREATE TABLE books_subjects(
+	book INTEGER,
+	subject INTEGER,
+	FOREIGN KEY (book) REFERENCES books(id),
+	FOREIGN KEY (subject) REFERENCES subjects(id)
+);
